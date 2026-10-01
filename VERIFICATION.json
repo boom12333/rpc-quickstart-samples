@@ -1,0 +1,67 @@
+{
+  "scope": "local fixture only; no live blockchain checks",
+  "checks": [
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_chainId",
+        "params": []
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": "0x1"
+      },
+      "pass": true
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "unknown",
+        "params": []
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "error": {
+          "code": -32601,
+          "message": "Method not found"
+        }
+      },
+      "pass": true
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "eth_chainId",
+        "params": [
+          1
+        ]
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "error": {
+          "code": -32602,
+          "message": "Invalid params"
+        }
+      },
+      "pass": true
+    },
+    {
+      "request": "bad json",
+      "response": {
+        "jsonrpc": "2.0",
+        "id": null,
+        "error": {
+          "code": -32700,
+          "message": "Parse error"
+        }
+      },
+      "pass": true
+    }
+  ]
+}
